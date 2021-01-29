@@ -39,11 +39,15 @@ public:
      */
     std::string to_string();
 
-private:
     /**
      * The root node of this tree.
      */
     H_Tree_Node *root;
+
+    /**
+     * The length of the string this Huffman tree was constructed from.
+     */
+    int text_length;
 };
 
 

@@ -7,10 +7,10 @@
 #include <map>
 #include <algorithm>
 
-H_Tree::H_Tree() : root() {
+H_Tree::H_Tree() : root(nullptr), text_length(0) {
 }
 
-H_Tree::H_Tree(const std::string &text) {
+H_Tree::H_Tree(const std::string &text) : text_length(text.size()) {
 //store all nodes as Huffmann tree nodes that occur at least once
     std::vector<std::pair<H_Tree_Node *, int>> nodes;
     //store index of byte in leaf vector

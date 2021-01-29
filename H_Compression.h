@@ -16,16 +16,17 @@ public:
     /**
      * Compresses a text string using Huffman trees.
      * @param text The string to be compressed.
-     * @return The compressed string
+     * @return A pair containing the Huffman tree and the compressed string
      */
-    static std::string compress(const std::string &text);
+    static std::pair<H_Tree*, std::string> compress(const std::string &text);
 
     /**
      * Decompresses a given string
-     * @param compressed
+     * @param hTree the Huffman tree that was used to compress the string
+     * @param compressed The compressed string
      * @return The decompressed string
      */
-    static std::string decompress(const std::string &compressed);
+    static std::string decompress(const H_Tree* hTree, const std::string &compressed);
 };
 
 
