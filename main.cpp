@@ -7,7 +7,7 @@
 int main() {
     std::streamsize size;
     std::ifstream file;
-    file.open("D:\\Programming\\Huffmann\\test.txt", std::ios::binary|std::ios::ate|std::ios::in);
+    file.open("D:\\Programming\\Huffmann\\capture_20201207102715985.bmp", std::ios::binary|std::ios::ate|std::ios::in);
     char* memblock;
     if(file.is_open()) {
        size = file.tellg();

@@ -17,9 +17,10 @@ std::pair<H_Tree*, std::string> H_Compression::compress(const std::string &text)
 
     std::ostringstream os;
 
-    //amount of filled spots for the next char
+    //amount of filled spots for the next char, resets at 8
     int filled = 0;
     unsigned char next = 0;
+
     for (const char &c : text) {
         for (const char &bit : seq[c]) {
             //append to result??
@@ -49,7 +50,7 @@ std::string H_Compression::decompress(const H_Tree* hTree, const std::string &co
 
     std::ostringstream os;
 
-    //how many bits we have looked at for each char
+    //shift counter, resets at 8
     int cleared = 0;
 
     //traverse the compressed string
@@ -57,7 +58,7 @@ std::string H_Compression::decompress(const H_Tree* hTree, const std::string &co
     unsigned char bit_seq = compressed[i++];
 
     while(true) {
-        //traverse tree until leaf is reached
+        //Huffman tree tells us where to go next
         H_Tree_Node* node  = hTree->root;
         while(!node->val) {
             if(cleared == 8) {
@@ -68,7 +69,7 @@ std::string H_Compression::decompress(const H_Tree* hTree, const std::string &co
                 bit_seq = compressed[i++];
                 cleared = 0;
             }
-            //is first bit set?
+            //branch left or right depending on first bit
             if(bit_seq >= 0x80) {
                 node = node->one;
             } else {
